@@ -1,0 +1,6 @@
+packages:
+  - 'apps/me/about/*'
+  # - "apps/blog/*"
+  # - "apps/accountant/*"
+  - "packages/components/*"
+  # - "packages/prisma"

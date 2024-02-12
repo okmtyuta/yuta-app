@@ -1,0 +1,20 @@
+{
+  "name": "@okmtyuta/packages.prisma.me.yuta.app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.js",
+  "scripts": {
+    "generate": "prisma generate",
+    "build": "pnpm generate && tsc",
+    "fmt": "prisma format"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.4.2",
+    "prisma": "^5.4.2",
+    "typescript": "^5.2.2"
+  }
+}
