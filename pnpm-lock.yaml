@@ -14,11 +14,11 @@ importers:
         specifier: ^0.4.1
         version: 0.4.1(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.3.3)
       '@okmtyuta/amatelas-astro':
-        specifier: ^0.1.13
-        version: 0.1.13(prettier-plugin-astro@0.13.0)(prettier@3.2.5)
+        specifier: ^0.1.15
+        version: 0.1.15(prettier-plugin-astro@0.13.0)(prettier@3.2.5)
       '@okmtyuta/amatelas-theme':
-        specifier: ^0.1.13
-        version: 0.1.13
+        specifier: ^0.1.15
+        version: 0.1.15
       '@okmtyuta/packages.components.astro.yuta.app':
         specifier: workspace:^
         version: link:../../../../packages/components/astro
@@ -45,11 +45,11 @@ importers:
         version: 5.3.3
     devDependencies:
       '@okmtyuta/amatelas-astro':
-        specifier: ^0.1.13
-        version: 0.1.13(prettier-plugin-astro@0.13.0)(prettier@3.2.5)
+        specifier: ^0.1.15
+        version: 0.1.15(prettier-plugin-astro@0.13.0)(prettier@3.2.5)
       '@okmtyuta/amatelas-theme':
-        specifier: ^0.1.13
-        version: 0.1.13
+        specifier: ^0.1.15
+        version: 0.1.15
       astro:
         specifier: ^4.3.5
         version: 4.3.5(typescript@5.3.3)
@@ -649,8 +649,8 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.16.0
 
-  /@okmtyuta/amatelas-astro@0.1.13(prettier-plugin-astro@0.13.0)(prettier@3.2.5):
-    resolution: {integrity: sha512-keiMA4qJEMrR248Owd1smQQ3cfNq6B6BqGvm79Af86BWhHoroqv2/AwphdqDIuVeDZS0YgknTevHfAcwOR94kA==}
+  /@okmtyuta/amatelas-astro@0.1.15(prettier-plugin-astro@0.13.0)(prettier@3.2.5):
+    resolution: {integrity: sha512-gqEaU0vgjpSE6dHlF32JeLC0ze7scRe+4BngqVE1p/yJ6Di3lsvbHMOmT4swNwffAUSJN17Cg81bYFswwlaW+A==}
     dependencies:
       '@astrojs/check': 0.4.1(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.3.3)
       astro: 4.3.5(typescript@5.3.3)
@@ -671,8 +671,8 @@ packages:
     resolution: {integrity: sha512-3YG/27Ts6qAV2rnh8Gyb2Stbbx3AMRAD5Di3qNYV17HpWYpiYKdOrZL2FoRXAvtL7dKCybs8qqQRDeb0kdACcw==}
     dev: false
 
-  /@okmtyuta/amatelas-theme@0.1.13:
-    resolution: {integrity: sha512-uZacZn9OAfglfANGVn1AhFqzVE3lUCFe6UvakL2y6UMROAfmp8VHf06J780FZZVDDQGlL/0Ufq9q+GHP9/zoWA==}
+  /@okmtyuta/amatelas-theme@0.1.15:
+    resolution: {integrity: sha512-riso7D0t22SnR2k+Ds2vGacfAQg3IEbPaSlD8EfM/CP5UuDuZkWNUcKoOz+qFMAWets3MYCfjvBnOvnj1JZ6Cw==}
 
   /@rollup/rollup-android-arm-eabi@4.10.0:
     resolution: {integrity: sha512-/MeDQmcD96nVoRumKUljsYOLqfv1YFJps+0pTrb2Z9Nl/w5qNUysMaWQsrd1mvAlNT4yza1iVyIu4Q4AgF6V3A==}
@@ -1250,6 +1250,7 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    requiresBuild: true
 
   /color-string@1.9.1:
     resolution: {integrity: sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==}

@@ -1,10 +1,30 @@
 ---
 import { Positional } from "@okmtyuta/amatelas-astro"
+import {GitHubSVG,YouTubeSVG,ZennSVG} from "../svg"
 ---
 
-<Positional class={'header'} position="sticky">
-  <div class={'header-content'}>
-    <slot/>
+<Positional class='header' position="sticky">
+  <div class='header-content'>
+    <div>yuta.app</div>
+    <div class="links">
+      <a href="https://github.com/okmtyuta">
+        <div class="github-logo-svg-exterior">
+          <GitHubSVG class='github-logo-svg' />
+        </div>
+      </a>
+
+      <a href="https://zenn.dev/okmtyuta">
+        <div class='zenn-logo-svg-exterior'>
+          <ZennSVG class='zenn-logo-svg' />
+        </div>
+      </a>
+
+      <a href="https://youtube.com/@okmtyuta?si=IIyK50KH3XzG5QM8">
+        <div class="youtube-logo-svg-exterior">
+          <YouTubeSVG class="youtube-logo-svg" />
+        </div>
+      </a>
+    </div>
   </div>
 </Positional>
 
@@ -22,9 +42,31 @@ import { Positional } from "@okmtyuta/amatelas-astro"
   display: flex;
   align-items: center;
   justify-content: center;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   padding-left: 24px;
   padding-right: 24px;
-
+}
+.links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.github-logo-svg-exterior {
+  width: 36px;
+}
+.github-logo-svg {
+  width: 100%;
+}
+.zenn-logo-svg-exterior {
+  width: 36px;
+}
+.zenn-logo-svg {
+  width: 100%;
+}
+.youtube-logo-svg-exterior {
+  width: 36px;
+}
+.youtube-logo-svg {
+  width: 100%;
 }
 </style>

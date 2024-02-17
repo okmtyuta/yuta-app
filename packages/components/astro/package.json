@@ -18,8 +18,8 @@
     "fmt": "prettier --write . --plugin=prettier-plugin-astro"
   },
   "devDependencies": {
-    "@okmtyuta/amatelas-astro": "^0.1.13",
-    "@okmtyuta/amatelas-theme": "^0.1.13",
+    "@okmtyuta/amatelas-astro": "^0.1.15",
+    "@okmtyuta/amatelas-theme": "^0.1.15",
     "astro": "^4.3.5",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0"

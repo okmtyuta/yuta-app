@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
-    "@okmtyuta/amatelas-astro": "^0.1.13",
-    "@okmtyuta/amatelas-theme": "^0.1.13",
+    "@okmtyuta/amatelas-astro": "^0.1.15",
+    "@okmtyuta/amatelas-theme": "^0.1.15",
     "@okmtyuta/packages.components.astro.yuta.app": "workspace:^",
     "astro": "^4.2.1",
     "typescript": "^5.3.3"
