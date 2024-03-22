@@ -3,4 +3,4 @@ packages:
   # - "apps/blog/*"
   # - "apps/accountant/*"
   - "packages/components/*"
-  # - "packages/prisma"
+  - "packages/db/prisma"
