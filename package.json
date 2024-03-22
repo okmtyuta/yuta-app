@@ -6,6 +6,8 @@
   "scripts": {
     "dev:me:about:client": "pnpm --filter @okmtyuta/apps.me.about.client.yuta.app dev",
     "dev:me:about": "pnpm dev:me:about:client",
+    "build:me:about:client": "pnpm --filter @okmtyuta/apps.me.about.client.yuta.app build",
+    "build:me:about": "pnpm --filter @okmtyuta/apps.me.about.client.yuta.app build",
     "build:components:astro": "pnpm --filter @okmtyuta/packages.components.astro.yuta.app build"
   },
   "keywords": [],

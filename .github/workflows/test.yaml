@@ -15,5 +15,5 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Test Amatelas
-        run: pnpm test:amatelas
+      - name: Build apps/me/about/client
+        run: pnpm build:me:about
