@@ -8,14 +8,14 @@ importers:
 
   .: {}
 
-  apps/about:
+  apps/me/about:
     dependencies:
       '@astrojs/check':
         specifier: ^0.4.1
         version: 0.4.1(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.5)
       '@okmtyuta/packages.components.astro.yuta.app':
         specifier: workspace:^
-        version: link:../../packages/components/astro
+        version: link:../../../packages/components/astro
       astro:
         specifier: ^4.2.1
         version: 4.8.6(typescript@5.4.5)
