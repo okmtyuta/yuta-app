@@ -1,0 +1,38 @@
+---
+import {
+  Header,
+  Footer,
+  Frame
+} from '@okmtyuta/packages.components.astro.yuta.app'
+import './reset.css'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <main>
+      <Header>about.me.yuta.app</Header>
+
+      <Frame>
+        <slot />
+      </Frame>
+
+      <Footer>© 2024 yuta.app</Footer>
+    </main>
+  </body>
+</html>

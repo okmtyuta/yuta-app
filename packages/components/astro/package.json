@@ -1,0 +1,33 @@
+{
+  "name": "@okmtyuta/packages.components.astro.yuta.app",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "src",
+    "index.ts"
+  ],
+  "keywords": [
+    "astro-component"
+  ],
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "fmt": "prettier --write . --plugin=prettier-plugin-astro"
+  },
+  "devDependencies": {
+    "@okmtyuta/amatelas-astro": "^0.1.35",
+    "@okmtyuta/amatelas-theme": "^0.1.35",
+    "astro": "^4.3.5",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.3",
+    "@okmtyuta/amatelas-lib": "^0.1.13",
+    "clsx": "^2.1.0",
+    "typescript": "^5.3.3"
+  }
+}
