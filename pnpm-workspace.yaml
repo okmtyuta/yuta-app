@@ -1,6 +1,6 @@
 packages:
   - 'apps/me/about'
-  # - 'apps/me/note/*'
+  - 'apps/note'
   # - "apps/me/blog/*"
   # - "apps/accountant/*"
   - "packages/components/*"
