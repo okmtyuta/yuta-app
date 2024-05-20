@@ -30,7 +30,7 @@ const { post, previous_post, next_post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.data.title} description={post.data.description} slug={post.slug}>
   <Content  />
   <div class="navigation">
     {

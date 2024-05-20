@@ -8,9 +8,11 @@ import "./reset.css";
 
 interface Props {
   title?: string;
+  description? : string,
+  slug?:string
 }
 
-const { title = "Note", } = Astro.props;
+const { title = "Note", description = '', slug = '' } = Astro.props;
 ---
 
 <!doctype html>
@@ -28,12 +30,12 @@ const { title = "Note", } = Astro.props;
     />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- <meta property="og:title" content={frontmatter.title} />
+    <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content={frontmatter.description} />
-    <meta property="og:image" content={`https://note.me.yuta.app/images/${frontmatter.slug}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`https://note.me.yuta.app/images/${slug}`} />
     <meta property="og:url" content={`https://note.me.yuta.app/images`} />
-    <meta name="twitter:card" content="summary_large_image" /> -->
+    <meta name="twitter:card" content="summary_large_image" />
 
     <title>{title} | yuta.app</title>
   </head>
