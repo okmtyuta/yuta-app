@@ -1,9 +1,12 @@
 ---
-
 import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
+import { Image } from 'astro:assets'
 
 const posts = await getCollection('posts')
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/posts/**/*.{png,jpg}'
+)
 ---
 
 <Layout title="Welcome to Astro.">
@@ -12,14 +15,14 @@ const posts = await getCollection('posts')
     <ul>
       {
         posts.map((post) => {
-          const thumbnail = post.data.thumbnail
-            ? `/images/posts/${post.slug}/${post.data.thumbnail}`
-            : '/images/hanyou.jpg'
 
+          const thumbnail = post.data.thumbnail
+            ? images[`/src/assets/posts/${post.slug}/${post.data.thumbnail}`]
+            : images[`/src/assets/posts/hanyou.jpg`]
           return (
             <li>
               <a href={`posts/${post.slug}`}>{post.data.title}</a>
-              <img src={thumbnail} alt="A bird." />
+              <Image src={thumbnail()} alt="A bird." />
             </li>
           )
         })

@@ -26,9 +26,15 @@ type Props = {
 }
 const { post, previous_post, next_post } = Astro.props
 
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/posts/**/*.{png,jpg}'
+)
+
 const thumbnail = post.data.thumbnail
-  ? `/images/posts/${post.slug}/${post.data.thumbnail}`
-  : '/images/hanyou.jpg'
+  ? images[`/src/assets/posts/${post.slug}/${post.data.thumbnail}`]
+  : images[`/src/assets/posts/hanyou.jpg`]
+
+const thumbnail_src = (await thumbnail()).default.src
 
 const { Content } = await post.render()
 ---
@@ -37,8 +43,8 @@ const { Content } = await post.render()
   title={post.data.title}
   description={post.data.description}
   og={{
-    url: thumbnail,
-    image: thumbnail
+    url: thumbnail_src,
+    image: thumbnail_src,
   }}
 >
   <Content />
