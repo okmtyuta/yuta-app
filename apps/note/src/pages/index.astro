@@ -15,10 +15,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     <ul>
       {
         posts.map((post) => {
-
           const thumbnail = post.data.thumbnail
             ? images[`/src/assets/posts/${post.slug}/${post.data.thumbnail}`]
             : images[`/src/assets/posts/hanyou.jpg`]
+
           return (
             <li>
               <a href={`posts/${post.slug}`}>{post.data.title}</a>
