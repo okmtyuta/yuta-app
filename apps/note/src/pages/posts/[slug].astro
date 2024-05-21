@@ -9,12 +9,17 @@ export async function getStaticPaths() {
     const { previous, next } = post.data
     const previous_post = posts.find((post) => post.slug == previous)
     const next_post = posts.find((post) => post.slug == next)
+    const seriePosts = post.data.serie
+      ? posts.filter((post) => {
+          return post.data.serie === post.data.serie
+        })
+      : []
 
     return {
       params: {
         slug: post.slug
       },
-      props: { post, previous_post, next_post }
+      props: { post, previous_post, next_post, seriePosts }
     }
   })
 }
@@ -23,8 +28,9 @@ type Props = {
   post: CollectionEntry<'posts'>
   previous_post: CollectionEntry<'posts'>
   next_post: CollectionEntry<'posts'>
+  seriePosts: CollectionEntry<'posts'>[]
 }
-const { post, previous_post, next_post } = Astro.props
+const { post, previous_post, next_post, seriePosts } = Astro.props
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/posts/**/*.{png,jpg}'
@@ -63,6 +69,20 @@ const { Content } = await post.render()
       )
     }
   </div>
+
+  <h6>Series</h6>
+
+  <ul>
+    {
+      seriePosts.map((post) => {
+        return (
+          <li>
+            <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+          </li>
+        )
+      })
+    }
+  </ul>
 </Layout>
 
 <style>
