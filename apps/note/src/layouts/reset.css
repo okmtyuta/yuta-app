@@ -238,10 +238,12 @@ ol > li:before {
 }
 
 .amsthm {
+  margin: 10px 0;
 }
 .amsthm.important {
   background-color: #fef4f4;
   padding: 12px;
+  border-radius: 4px;
 }
 .amsthm-label {
   font-weight: bold;

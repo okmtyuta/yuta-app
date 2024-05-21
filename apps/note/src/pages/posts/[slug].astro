@@ -26,13 +26,20 @@ type Props = {
 }
 const { post, previous_post, next_post } = Astro.props
 
+const thumbnail = post.data.thumbnail
+  ? `/images/posts/${post.slug}/${post.data.thumbnail}`
+  : '/images/hanyou.jpg'
+
 const { Content } = await post.render()
 ---
 
 <Layout
   title={post.data.title}
   description={post.data.description}
-  slug={post.slug}
+  og={{
+    url: thumbnail,
+    image: thumbnail
+  }}
 >
   <Content />
   <div class="navigation">

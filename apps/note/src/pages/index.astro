@@ -1,7 +1,7 @@
 ---
+import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
-import { Postcard } from '../components'
 
 const posts = await getCollection('posts')
 ---
@@ -9,29 +9,23 @@ const posts = await getCollection('posts')
 <Layout title="Welcome to Astro.">
   <main>
     <h1>Posts</h1>
-    <div class="postcards">
+    <ul>
       {
         posts.map((post) => {
-          return <Postcard post={post} />
+          const thumbnail = post.data.thumbnail
+            ? `/images/posts/${post.slug}/${post.data.thumbnail}`
+            : '/images/hanyou.jpg'
+
+          return (
+            <li>
+              <a href={`posts/${post.slug}`}>{post.data.title}</a>
+              <img src={thumbnail} alt="A bird." />
+            </li>
+          )
         })
       }
-    </div>
+    </ul>
   </main>
 </Layout>
 
-<style>
-  .postcards {
-    @media screen and (max-width: 767px) {
-      justify-content: space-around
-    } /* tablet */
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-      gap: 5%;
-    } /* pc */
-    @media screen and (min-width: 1025px) {
-      gap: 5%;
-    }
-
-    display: flex;
-    flex-wrap: wrap;
-  }
-</style>
+<style></style>

@@ -9,10 +9,14 @@ import './reset.css'
 interface Props {
   title?: string
   description?: string
-  slug?: string
+  og?: {
+    url?: string
+    image?: string
+  }
 }
 
-const { title = 'Note', description = '', slug = '' } = Astro.props
+const { title = 'Note', description = '', og = {} } = Astro.props
+const { url: ogurl = '', image: ogimage = '' } = og
 ---
 
 <!doctype html>
@@ -33,11 +37,8 @@ const { title = 'Note', description = '', slug = '' } = Astro.props
     <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
     <meta property="og:description" content={description} />
-    <meta
-      property="og:image"
-      content={`${import.meta.env.API_ROOT}/images/${slug}`}
-    />
-    <meta property="og:url" content={`${import.meta.env.API_ROOT}/images`} />
+    <meta property="og:image" content={ogimage} />
+    <meta property="og:url" content={ogurl} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <title>{title} | yuta.app</title>
