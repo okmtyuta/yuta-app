@@ -1,25 +1,37 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "../layouts/Layout.astro";
+import { getCollection } from 'astro:content'
+import Layout from '../layouts/Layout.astro'
+import { Postcard } from '../components'
 
-const posts = await getCollection("posts");
+const posts = await getCollection('posts')
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
     <h1>Posts</h1>
-    <ul>
+    <div class="postcards">
       {
         posts.map((post) => {
-          return (
-            <li>
-              <a href={`posts/${post.slug}`}>{post.data.title}</a>
-            </li>
-          );
+          return <Postcard post={post} />
         })
       }
-    </ul>
+    </div>
   </main>
 </Layout>
 
-<style></style>
+<style>
+  .postcards {
+    @media screen and (max-width: 767px) {
+      justify-content: space-around
+    } /* tablet */
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      gap: 5%;
+    } /* pc */
+    @media screen and (min-width: 1025px) {
+      gap: 5%;
+    }
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>

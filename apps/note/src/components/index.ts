@@ -1,6 +1,6 @@
 import Header from './header/header.astro'
 import Footer from './footer/footer.astro'
 import Frame from './frame/frame.astro'
-import { Thumbnail } from './thubnail'
+import Postcard from './postcard/postcard.astro'
 
-export { Header, Footer, Frame, Thumbnail }
+export { Header, Footer, Frame, Postcard }

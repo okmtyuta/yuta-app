@@ -1,37 +1,40 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-
+import { getCollection, type CollectionEntry } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
 
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
+  const posts = await getCollection('posts')
 
   return posts.map((post) => {
-    const { previous, next } = post.data;
-    const previous_post = posts.find((post) => post.slug == previous);
-    const next_post = posts.find((post) => post.slug == next);
+    const { previous, next } = post.data
+    const previous_post = posts.find((post) => post.slug == previous)
+    const next_post = posts.find((post) => post.slug == next)
 
     return {
       params: {
-        slug: post.slug,
+        slug: post.slug
       },
-      props: { post, previous_post, next_post },
-    };
-  });
+      props: { post, previous_post, next_post }
+    }
+  })
 }
 
 type Props = {
-  post: CollectionEntry<"posts">;
-  previous_post: CollectionEntry<"posts">;
-  next_post: CollectionEntry<"posts">;
-};
-const { post, previous_post, next_post } = Astro.props;
+  post: CollectionEntry<'posts'>
+  previous_post: CollectionEntry<'posts'>
+  next_post: CollectionEntry<'posts'>
+}
+const { post, previous_post, next_post } = Astro.props
 
-const { Content } = await post.render();
+const { Content } = await post.render()
 ---
 
-<Layout title={post.data.title} description={post.data.description} slug={post.slug}>
-  <Content  />
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  slug={post.slug}
+>
+  <Content />
   <div class="navigation">
     {
       previous_post && (

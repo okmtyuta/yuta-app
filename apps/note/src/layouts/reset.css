@@ -233,7 +233,7 @@ ol > li {
   counter-increment: cnt;
 }
 ol > li:before {
-  content: "(" counter(cnt) ") ";
+  content: '(' counter(cnt) ') ';
   margin-right: 4px;
 }
 

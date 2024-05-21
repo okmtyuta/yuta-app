@@ -4,15 +4,15 @@ import {
   Footer,
   Frame
 } from '@okmtyuta/packages.components.astro.yuta.app'
-import "./reset.css";
+import './reset.css'
 
 interface Props {
-  title?: string;
-  description? : string,
-  slug?:string
+  title?: string
+  description?: string
+  slug?: string
 }
 
-const { title = "Note", description = '', slug = '' } = Astro.props;
+const { title = 'Note', description = '', slug = '' } = Astro.props
 ---
 
 <!doctype html>
@@ -33,21 +33,24 @@ const { title = "Note", description = '', slug = '' } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`https://note.yuta.app/images/${slug}`} />
-    <meta property="og:url" content={`https://note.yuta.app/images`} />
+    <meta
+      property="og:image"
+      content={`${import.meta.env.API_ROOT}/images/${slug}`}
+    />
+    <meta property="og:url" content={`${import.meta.env.API_ROOT}/images`} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <title>{title} | yuta.app</title>
   </head>
   <body>
     <main>
-      <Header/>
+      <Header />
 
       <Frame>
         <slot />
       </Frame>
 
-      <Footer/>
+      <Footer />
     </main>
   </body>
 </html>

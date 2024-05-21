@@ -121,6 +121,9 @@ export const amsthm = () => {
         proofProcess(node)
       }
     })
+    visit(tree, 'heading', (node) => {
+      console.log(node)
+    })
   }
 
   return transformer
