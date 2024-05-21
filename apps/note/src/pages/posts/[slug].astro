@@ -10,8 +10,8 @@ export async function getStaticPaths() {
     const previous_post = posts.find((post) => post.slug == previous)
     const next_post = posts.find((post) => post.slug == next)
     const seriePosts = post.data.serie
-      ? posts.filter((post) => {
-          return post.data.serie === post.data.serie
+      ? posts.filter((p) => {
+          return post.data.serie === p && post.slug !== p.slug
         })
       : []
 
@@ -70,19 +70,22 @@ const { Content } = await post.render()
     }
   </div>
 
-  <h6>Series</h6>
-
-  <ul>
-    {
-      seriePosts.map((post) => {
-        return (
-          <li>
-            <a href={`/posts/${post.slug}`}>{post.data.title}</a>
-          </li>
-        )
-      })
-    }
-  </ul>
+  {
+    seriePosts.length > 0 && (
+      <>
+        <h6>Series</h6>
+        <ul>
+          {seriePosts.map((post) => {
+            return (
+              <li>
+                <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+              </li>
+            )
+          })}
+        </ul>
+      </>
+    )
+  }
 </Layout>
 
 <style>

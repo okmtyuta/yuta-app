@@ -9,16 +9,21 @@ const mapThmType = (thmType) => {
     return 'Thm'
   } else if (thmType === 'lem') {
     return 'Lem'
+  } else if (thmType === 'eg') {
+    return 'e.g'
   } else {
     return 'Def'
   }
 }
 
 const isThm = (node) => {
-  return ['dfn', 'prop', 'thm', 'lem'].includes(node.name)
+  return ['dfn', 'prop', 'thm', 'lem', 'eg'].includes(node.name)
 }
 const isProof = (node) => {
   return node.name === 'proof'
+}
+const isFigcaption = (node) => {
+  return node.name === 'figcaption'
 }
 
 const proofProcess = (node) => {
@@ -109,9 +114,40 @@ const thmProcess = (node, tree) => {
   }
 }
 
+const figcaptionProcess = (node, tree) => {
+  if (!node.children || node.children.length === 0) {
+    return
+  }
+
+  node.data = node.data || {}
+  node.data.hProperties = node.data.hProperties || {}
+  node.data.hProperties = {
+    class: node.data.hProperties.class
+      ? `${node.data.hProperties} figcaption`
+      : 'figcaption'
+  }
+
+  tree.figcaptionid += 1
+
+  node.children[0].children = [
+    {
+      type: 'text',
+      value: `図${tree.figcaptionid}.`,
+      data: {
+        hName: 'span',
+        hProperties: {
+          style: 'margin-right: 4px;'
+        }
+      }
+    },
+    ...node.children[0].children
+  ]
+}
+
 export const amsthm = () => {
   function transformer(tree) {
     tree.thmid = 0
+    tree.figcaptionid = 0
     visit(tree, 'containerDirective', (node) => {
       if (isThm(node)) {
         thmProcess(node, tree)
@@ -119,6 +155,10 @@ export const amsthm = () => {
 
       if (isProof(node)) {
         proofProcess(node)
+      }
+
+      if (isFigcaption(node)) {
+        figcaptionProcess(node, tree)
       }
     })
   }

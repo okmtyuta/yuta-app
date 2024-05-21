@@ -1,12 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
-import { Image } from 'astro:assets'
-
-const posts = await getCollection('posts')
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/posts/**/*.{png,jpg}'
-)
 ---
 
 <Layout title="Welcome to Astro.">
@@ -14,6 +7,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     <h1>Contents</h1>
     <ul>
       <li><a href="/posts">Posts</a></li>
+      <li><a href="/travelogues">Travelogues</a></li>
       <li><a href="https://about.me.yuta.app">About</a></li>
     </ul>
   </main>

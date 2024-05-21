@@ -194,7 +194,7 @@ img {
   padding: 0 20%;
   height: auto;
 }
-figcaption {
+.figcaption {
   text-align: center;
   font-style: italic;
 }

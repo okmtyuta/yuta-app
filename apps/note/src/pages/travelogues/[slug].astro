@@ -1,0 +1,115 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+
+export async function getStaticPaths() {
+  const travelogues = await getCollection('travelogues')
+
+  return travelogues.map((travelogue) => {
+    const { previous, next } = travelogue.data
+    const previous_travelogue = travelogues.find(
+      (travelogue) => travelogue.slug == previous
+    )
+    const next_travelogue = travelogues.find(
+      (travelogue) => travelogue.slug == next
+    )
+    const serieTravelogues = travelogue.data.serie
+      ? travelogues.filter((t) => {
+          return (
+            t.data.serie === travelogue.data.serie && t.slug !== travelogue.slug
+          )
+        })
+      : []
+
+    return {
+      params: {
+        slug: travelogue.slug
+      },
+      props: {
+        travelogue,
+        previous_travelogue,
+        next_travelogue,
+        serieTravelogues
+      }
+    }
+  })
+}
+
+type Props = {
+  travelogue: CollectionEntry<'travelogues'>
+  previous_travelogue: CollectionEntry<'travelogues'>
+  next_travelogue: CollectionEntry<'travelogues'>
+  serieTravelogues: CollectionEntry<'travelogues'>[]
+}
+const { travelogue, previous_travelogue, next_travelogue, serieTravelogues } =
+  Astro.props
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/travelogues/**/*.{png,jpg}'
+)
+
+const thumbnail = travelogue.data.thumbnail
+  ? images[
+      `/src/assets/travelogues/${travelogue.slug}/${travelogue.data.thumbnail}`
+    ]
+  : images[`/src/assets/travelogues/common.jpg`]
+
+const thumbnail_src = (await thumbnail()).default.src
+
+const { Content } = await travelogue.render()
+---
+
+<Layout
+  title={travelogue.data.title}
+  description={travelogue.data.description}
+  og={{
+    image: `https://note.yuta.app/${thumbnail_src}`
+  }}
+>
+  <Content />
+  <div class="navigation">
+    {
+      previous_travelogue && (
+        <div>
+          <a href={previous_travelogue.slug}>
+            {previous_travelogue.data.title}
+          </a>
+        </div>
+      )
+    }
+    {
+      next_travelogue && (
+        <div>
+          <a href={next_travelogue.slug}>{next_travelogue.data.title}</a>
+        </div>
+      )
+    }
+  </div>
+
+  {
+    serieTravelogues.length > 0 && (
+      <>
+        <h6>Series</h6>
+        <ul>
+          {serieTravelogues.map((travelogue) => {
+            return (
+              <li>
+                <a href={`/travelogues/${travelogue.slug}`}>
+                  {travelogue.data.title}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </>
+    )
+  }
+</Layout>
+
+<style>
+  .navigation {
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
