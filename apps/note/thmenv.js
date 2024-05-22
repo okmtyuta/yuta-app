@@ -120,12 +120,7 @@ const figcaptionProcess = (node, tree) => {
   }
 
   node.data = node.data || {}
-  node.data.hProperties = node.data.hProperties || {}
-  node.data.hProperties = {
-    class: node.data.hProperties.class
-      ? `${node.data.hProperties} figcaption`
-      : 'figcaption'
-  }
+  node.data.hName = 'figcaption'
 
   tree.figcaptionid += 1
 
@@ -148,6 +143,7 @@ export const amsthm = () => {
   function transformer(tree) {
     tree.thmid = 0
     tree.figcaptionid = 0
+
     visit(tree, 'containerDirective', (node) => {
       if (isThm(node)) {
         thmProcess(node, tree)
