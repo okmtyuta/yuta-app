@@ -36,9 +36,13 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/posts/**/*.{png,jpg}'
 )
 
-const thumbnail = post.data.thumbnail
-  ? images[`/src/assets/posts/${post.slug}/${post.data.thumbnail}`]
-  : images[`/src/assets/posts/hanyou.jpg`]
+const thumbnail =
+  images[`/src/assets/posts/${post.slug}/thumbnail.jpg`] ||
+  images[`/src/assets/posts/${post.slug}/thumbnail.png`] ||
+  images[`/src/assets/posts/${post.data.genre}/thumbnail.jpg`] ||
+  images[`/src/assets/posts/${post.data.genre}/thumbnail.png`] ||
+  images[`/src/assets/posts/thumbnail.jpg`] ||
+  images[`/src/assets/posts/thumbnail.png`]
 
 const thumbnail_src = (await thumbnail()).default.src
 
@@ -52,6 +56,31 @@ const { Content } = await post.render()
     image: `https://note.yuta.app/${thumbnail_src}`
   }}
 >
+  <h1>{post.data.title}</h1>
+  <h6>{post.data.date.toISOString().slice(0, 10)}</h6>
+
+  {
+    post.data.serie && (
+      <div class="series">
+        <span>Series</span>
+        <span>
+          <a href={`/posts/genre/${post.data.genre}`}>{post.data.serie}</a>
+        </span>
+      </div>
+    )
+  }
+
+  {
+    post.data.genre && (
+      <div class="genre">
+        <span>Genre</span>
+        <span>
+          <a href={`/posts/genre/${post.data.genre}`}>{post.data.genre}</a>
+        </span>
+      </div>
+    )
+  }
+
   <Content />
   <div class="navigation">
     {
@@ -93,5 +122,10 @@ const { Content } = await post.render()
     margin-top: 48px;
     display: flex;
     justify-content: space-between;
+  }
+  .series,
+  .genre {
+    display: flex;
+    gap: 10px;
   }
 </style>

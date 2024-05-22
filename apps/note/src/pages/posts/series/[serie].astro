@@ -41,9 +41,13 @@ const seriePosts = posts.filter((post) => {
   <ul>
     {
       seriePosts.map((post) => {
-        const thumbnail = post.data.thumbnail
-          ? images[`/src/assets/posts/${post.slug}/${post.data.thumbnail}`]
-          : images[`/src/assets/posts/hanyou.jpg`]
+        const thumbnail =
+          images[`/src/assets/posts/${post.slug}/thumbnail.jpg`] ||
+          images[`/src/assets/posts/${post.slug}/thumbnail.png`] ||
+          images[`/src/assets/posts/${post.data.genre}/thumbnail.jpg`] ||
+          images[`/src/assets/posts/${post.data.genre}/thumbnail.png`] ||
+          images[`/src/assets/posts/thumbnail.jpg`] ||
+          images[`/src/assets/posts/thumbnail.png`]
 
         return (
           <li>

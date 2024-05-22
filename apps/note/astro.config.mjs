@@ -10,12 +10,7 @@ import mdx from '@astrojs/mdx'
 // https://astro.build/config
 export default defineConfig({
   markdown: {
-    remarkPlugins: [
-      remarkMath,
-      remarkDirective,
-      remarkLinkCard,
-      amsthm
-    ],
+    remarkPlugins: [remarkMath, remarkDirective, remarkLinkCard, amsthm],
     rehypePlugins: [
       [
         rehypeKatex,
