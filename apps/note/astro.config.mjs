@@ -5,8 +5,6 @@ import rehypeKatex from 'rehype-katex'
 import remarkLinkCard from 'remark-link-card'
 import { amsthm } from './thmenv'
 
-import mdx from '@astrojs/mdx'
-
 // https://astro.build/config
 export default defineConfig({
   markdown: {
@@ -22,7 +20,7 @@ export default defineConfig({
       ]
     ]
   },
-  integrations: [mdx()],
+  integrations: [],
   image: {
     service: passthroughImageService()
   }

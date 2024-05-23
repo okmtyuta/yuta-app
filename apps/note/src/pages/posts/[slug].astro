@@ -33,10 +33,6 @@ type Props = {
 }
 const { post, previous_post, next_post, seriePosts } = Astro.props
 
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/posts/**/*.{png,jpg}'
-)
-
 const thumbnail = getPostThumbnail(post.slug, post.data.genre, null)
 
 
