@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content'
+
+import Layout from '../../../layouts/Layout.astro'
+
+const posts = await getCollection('posts')
+const genres = [
+  ...new Set(
+    posts
+      .filter((post) => {
+        return post.data.genre
+      })
+      .map((post) => {
+        return post.data.genre
+      })
+  )
+]
+---
+
+<Layout>
+  <h1>Genres</h1>
+  <ul>
+    {
+      genres.map((genre) => {
+        return (
+          <li>
+            <a href={`/posts/genres/${genre}`}>{genre}</a>
+          </li>
+        )
+      })
+    }
+  </ul>
+</Layout>

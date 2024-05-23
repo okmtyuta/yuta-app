@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import { Image } from 'astro:assets'
 import Layout from '../../../layouts/Layout.astro'
+import { getPostThumbnail } from '../../../shared/get-post-thumbnail'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
@@ -41,13 +42,7 @@ const seriePosts = posts.filter((post) => {
   <ul>
     {
       seriePosts.map((post) => {
-        const thumbnail =
-          images[`/src/assets/posts/${post.slug}/thumbnail.jpg`] ||
-          images[`/src/assets/posts/${post.slug}/thumbnail.png`] ||
-          images[`/src/assets/posts/${post.data.genre}/thumbnail.jpg`] ||
-          images[`/src/assets/posts/${post.data.genre}/thumbnail.png`] ||
-          images[`/src/assets/posts/thumbnail.jpg`] ||
-          images[`/src/assets/posts/thumbnail.png`]
+        const thumbnail = getPostThumbnail(post.slug, post.data.genre, null)
 
         return (
           <li>

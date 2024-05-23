@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
+import { getPostThumbnail } from '../../shared/get-post-thumbnail'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
@@ -36,13 +37,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/posts/**/*.{png,jpg}'
 )
 
-const thumbnail =
-  images[`/src/assets/posts/${post.slug}/thumbnail.jpg`] ||
-  images[`/src/assets/posts/${post.slug}/thumbnail.png`] ||
-  images[`/src/assets/posts/${post.data.genre}/thumbnail.jpg`] ||
-  images[`/src/assets/posts/${post.data.genre}/thumbnail.png`] ||
-  images[`/src/assets/posts/thumbnail.jpg`] ||
-  images[`/src/assets/posts/thumbnail.png`]
+const thumbnail = getPostThumbnail(post.slug, post.data.genre, null)
+
 
 const thumbnail_src = (await thumbnail()).default.src
 
