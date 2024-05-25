@@ -1,41 +1,33 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content'
+import { type CollectionEntry } from 'astro:content'
 import { Image } from 'astro:assets'
 import Layout from '../../../layouts/Layout.astro'
+import { PostsService } from '../../../services/posts/posts.service'
 
 type Props = {
   posts: CollectionEntry<'posts'>[]
+  service: PostsService
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts')
-  const genres = [
-    ...new Set(
-      posts
-        .filter((post) => {
-          return post.data.genre
-        })
-        .map((post) => {
-          return post.data.genre
-        })
-    )
-  ]
+  const service = await PostsService.init()
+  const genres = await service.getGenres()
 
   return genres.map((genre) => {
-    return { params: { genre: genre }, props: { posts } }
+    return { params: { genre: genre }, props: { service } }
   })
 }
 
-const { posts } = Astro.props
+const { service } = Astro.props
 const { genre } = Astro.params
-const genrePosts = posts.filter((post) => post.data.genre === genre)
+const genrePosts = await service.findByGenres([genre])
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/posts/**/*.{png,jpg}'
 )
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title={genre}>
   <main>
     <h1>{genre}</h1>
 

@@ -1,40 +1,25 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content'
+import { type CollectionEntry } from 'astro:content'
 import { Image } from 'astro:assets'
 import Layout from '../../../layouts/Layout.astro'
 import { getPostThumbnail } from '../../../shared/get-post-thumbnail'
+import { PostsService } from '../../../services/posts/posts.service'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts')
-  const series = [
-    ...new Set(
-      posts
-        .filter((post) => {
-          return post.data.serie
-        })
-        .map((post) => {
-          return post.data.serie
-        })
-    )
-  ]
+  const service = await PostsService.init()
+  const series = await service.getSeries()
 
   return series.map((serie) => {
-    return { params: { serie: serie }, props: { posts } }
+    return { params: { serie }, props: { service } }
   })
 }
-
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/posts/**/*.{png,jpg}'
-)
-
 type Props = {
   posts: CollectionEntry<'posts'>[]
+  service: PostsService
 }
 const { serie } = Astro.params
-const { posts } = Astro.props
-const seriePosts = posts.filter((post) => {
-  return post.data.serie === serie
-})
+const { service } = Astro.props
+const seriePosts = await service.findBySeries([serie])
 ---
 
 <Layout>

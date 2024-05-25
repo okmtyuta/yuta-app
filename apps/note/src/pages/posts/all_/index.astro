@@ -1,0 +1,52 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+import { getPostThumbnail } from '../../../shared/get-post-thumbnail'
+import { PostsService } from '../../../services/posts/posts.service'
+
+const service = await PostsService.init()
+
+const posts = service.getPosts()
+---
+
+<Layout title='All Posts'>
+  <h1>All Posts</h1>
+
+  <ul>
+    {
+      posts.map((post) => {
+        const thumbnail = getPostThumbnail(post.slug, post.data.genre, null)
+
+        return (
+          <li>
+            <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+            {/* <Image src={thumbnail()} alt="A bird." /> */}
+          </li>
+        )
+      })
+    }
+  </ul>
+</Layout>
+
+<style>
+  .tag-label {
+    user-select: none;
+    cursor: pointer;
+    padding: 4px;
+    transition: all 0.1s;
+  }
+  .tag:has(.checkbox:checked) > .tag-label {
+    background-color: #3c3c3c;
+    color: white;
+    border: #3c3c3c solid 1px;
+  }
+  .tag:has(.checkbox:not(:checked)) > .tag-label {
+    border: #3c3c3c solid 1px;
+  }
+  .tags {
+    display: flex;
+    gap: 4px;
+  }
+  .checkbox {
+    display: none;
+  }
+</style>

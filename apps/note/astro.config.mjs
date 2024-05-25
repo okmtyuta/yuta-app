@@ -7,6 +7,7 @@ import { amsthm } from './thmenv'
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'hybrid',
   markdown: {
     remarkPlugins: [remarkMath, remarkDirective, remarkLinkCard, amsthm],
     rehypePlugins: [

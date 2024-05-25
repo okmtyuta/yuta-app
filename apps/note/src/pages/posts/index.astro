@@ -1,42 +1,28 @@
 ---
-import { getCollection } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
+import { PostsService } from '../../services/posts/posts.service'
 
-const posts = await getCollection('posts')
-const series = [
-  ...new Set(
-    posts
-      .filter((post) => {
-        return post.data.serie
-      })
-      .map((post) => {
-        return post.data.serie
-      })
-  )
-]
-const genres = [
-  ...new Set(
-    posts
-      .filter((post) => {
-        return post.data.genre
-      })
-      .map((post) => {
-        return post.data.genre
-      })
-  )
-]
+const service = await PostsService.init()
+
+const series = await service.getSeries()
+const genres = await service.getGenres()
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Posts">
   <main>
     <h1>Posts</h1>
+    <ul>
+      <li>
+        <a href={`/posts/all_`}>All Posts</a>
+      </li>
+    </ul>
     <h3>Genre</h3>
     <ul>
       {
         genres.map((genre) => {
           return (
             <li>
-              <a href={`/posts/genre/${genre}`}>{genre}</a>
+              <a href={`/posts/genres/${genre}`}>{genre}</a>
             </li>
           )
         })

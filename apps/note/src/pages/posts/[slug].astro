@@ -2,39 +2,31 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 import { getPostThumbnail } from '../../shared/get-post-thumbnail'
+import { PostsService } from '../../services/posts/posts.service'
 
 export async function getStaticPaths() {
+  const service = await PostsService.init()
   const posts = await getCollection('posts')
 
   return posts.map((post) => {
-    const { previous, next } = post.data
-    const previous_post = posts.find((post) => post.slug == previous)
-    const next_post = posts.find((post) => post.slug == next)
-    const seriePosts = post.data.serie
-      ? posts.filter((p) => {
-          return post.data.serie === p && post.slug !== p.slug
-        })
-      : []
+    const seriePosts = service.findBySeries([post.data.serie])
 
     return {
       params: {
         slug: post.slug
       },
-      props: { post, previous_post, next_post, seriePosts }
+      props: { post, seriePosts }
     }
   })
 }
 
 type Props = {
   post: CollectionEntry<'posts'>
-  previous_post: CollectionEntry<'posts'>
-  next_post: CollectionEntry<'posts'>
   seriePosts: CollectionEntry<'posts'>[]
 }
-const { post, previous_post, next_post, seriePosts } = Astro.props
+const { post, seriePosts } = Astro.props
 
 const thumbnail = getPostThumbnail(post.slug, post.data.genre, null)
-
 
 const thumbnail_src = (await thumbnail()).default.src
 
@@ -49,7 +41,7 @@ const { Content } = await post.render()
   }}
 >
   <h1>{post.data.title}</h1>
-  <h6>{post.data.date.toISOString().slice(0, 10)}</h6>
+  <h6>{post.data.postedAt.toISOString().slice(0, 10)}</h6>
 
   {
     post.data.serie && (
@@ -67,29 +59,13 @@ const { Content } = await post.render()
       <div class="genre">
         <span>Genre</span>
         <span>
-          <a href={`/posts/genre/${post.data.genre}`}>{post.data.genre}</a>
+          <a href={`/posts/genres/${post.data.genre}`}>{post.data.genre}</a>
         </span>
       </div>
     )
   }
 
   <Content />
-  <div class="navigation">
-    {
-      previous_post && (
-        <div>
-          <a href={previous_post.slug}>{previous_post.data.title}</a>
-        </div>
-      )
-    }
-    {
-      next_post && (
-        <div>
-          <a href={next_post.slug}>{next_post.data.title}</a>
-        </div>
-      )
-    }
-  </div>
 
   {
     seriePosts.length > 0 && (
@@ -110,11 +86,6 @@ const { Content } = await post.render()
 </Layout>
 
 <style>
-  .navigation {
-    margin-top: 48px;
-    display: flex;
-    justify-content: space-between;
-  }
   .series,
   .genre {
     display: flex;
