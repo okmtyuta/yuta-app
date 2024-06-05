@@ -24,7 +24,8 @@ type Props = {
   post: CollectionEntry<'posts'>
   seriePosts: CollectionEntry<'posts'>[]
 }
-const { post, seriePosts } = Astro.props
+// const { post, seriePosts } = Astro.props
+const { post } = Astro.props
 
 const thumbnail = getPostThumbnail(post.slug, post.data.genre, null)
 
@@ -67,7 +68,7 @@ const { Content } = await post.render()
 
   <Content />
 
-  {
+  <!-- {
     seriePosts.length > 0 && (
       <>
         <h6>Series</h6>
@@ -82,7 +83,7 @@ const { Content } = await post.render()
         </ul>
       </>
     )
-  }
+  } -->
 </Layout>
 
 <style>
