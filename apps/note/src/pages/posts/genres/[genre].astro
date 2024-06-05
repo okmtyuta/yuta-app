@@ -11,7 +11,7 @@ type Props = {
 
 export async function getStaticPaths() {
   const service = await PostsService.init()
-  const genres = await service.getGenres()
+  const genres = service.getGenres()
 
   return genres.map((genre) => {
     return { params: { genre: genre }, props: { service } }
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props
 const { genre } = Astro.params
-const genrePosts = await service.findByGenres([genre])
+const genrePosts = service.findByGenres([genre])
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/posts/**/*.{png,jpg}'

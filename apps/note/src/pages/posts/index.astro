@@ -4,8 +4,8 @@ import { PostsService } from '../../services/posts/posts.service'
 
 const service = await PostsService.init()
 
-const series = await service.getSeries()
-const genres = await service.getGenres()
+const series = service.getSeries()
+const genres = service.getGenres()
 ---
 
 <Layout title="Posts">

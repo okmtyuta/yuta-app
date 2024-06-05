@@ -5,7 +5,7 @@ const postsCollection = defineCollection({
     title: z.string(),
     postedAt: z.date(),
     description: z.string(),
-    tags: z.array(z.string()).optional(),
+    tags: z.array(z.string()),
     genre: z.string().optional(),
     serie: z.string().optional()
   })

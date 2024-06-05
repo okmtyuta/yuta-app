@@ -1,6 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro'
-import { getPostThumbnail } from '../../../shared/get-post-thumbnail'
+// import { getPostThumbnail } from '../../../shared/get-post-thumbnail'
 import { PostsService } from '../../../services/posts/posts.service'
 
 const service = await PostsService.init()
@@ -8,13 +8,13 @@ const service = await PostsService.init()
 const posts = service.getPosts()
 ---
 
-<Layout title='All Posts'>
+<Layout title="All Posts">
   <h1>All Posts</h1>
 
   <ul>
     {
       posts.map((post) => {
-        const thumbnail = getPostThumbnail(post.slug, post.data.genre, null)
+        // const thumbnail = getPostThumbnail(post.slug, post.data.genre, null)
 
         return (
           <li>

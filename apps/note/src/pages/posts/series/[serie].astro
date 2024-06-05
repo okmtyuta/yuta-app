@@ -7,7 +7,7 @@ import { PostsService } from '../../../services/posts/posts.service'
 
 export async function getStaticPaths() {
   const service = await PostsService.init()
-  const series = await service.getSeries()
+  const series = service.getSeries()
 
   return series.map((serie) => {
     return { params: { serie }, props: { service } }
@@ -19,7 +19,7 @@ type Props = {
 }
 const { serie } = Astro.params
 const { service } = Astro.props
-const seriePosts = await service.findBySeries([serie])
+const seriePosts = service.findBySeries([serie])
 ---
 
 <Layout>

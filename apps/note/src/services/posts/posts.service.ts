@@ -78,19 +78,19 @@ class PostsService {
     })
   }
 
-  findByTags(tags: (string | undefined | null)[]) {
-    const exactTags = tags.filter((tag) => tag != null)
-    if (exactTags.length === 0) {
-      return []
-    }
+  // findByTags(tags: (string | undefined | null)[]) {
+  //   const exactTags = tags.filter((tag) => tag != null)
+  //   if (exactTags.length === 0) {
+  //     return []
+  //   }
 
-    const posts = this.posts
-    return posts.filter((post) => {
-      return exactTags.every((tag) => {
-        return post.data.tags && post.data.tags.includes(tag)
-      })
-    })
-  }
+  //   const posts = this.posts
+  //   return posts.filter((post) => {
+  //     return exactTags.every((tag) => {
+  //       return post.data.tags && post.data.tags.includes(tag)
+  //     })
+  //   })
+  // }
 }
 
 export { PostsService }
