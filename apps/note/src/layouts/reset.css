@@ -221,6 +221,16 @@ blockquote {
 .katex-display {
   overflow-x: scroll;
 }
+.katex-display > .katex > .katex-html {
+  position: relative;
+}
+.katex-display > .katex > .katex-html > .base {
+  max-width: 80%;
+}
+.katex-display > .katex > .katex-html > .tag {
+  right: initial;
+  left: 0;
+}
 
 li {
   position: relative;
