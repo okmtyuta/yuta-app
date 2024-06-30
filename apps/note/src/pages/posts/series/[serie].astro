@@ -1,8 +1,6 @@
 ---
 import { type CollectionEntry } from 'astro:content'
-import { Image } from 'astro:assets'
 import Layout from '../../../layouts/Layout.astro'
-import { getPostThumbnail } from '../../../shared/get-post-thumbnail'
 import { PostsService } from '../../../services/posts/posts.service'
 
 export async function getStaticPaths() {
@@ -27,12 +25,9 @@ const seriePosts = service.findBySeries([serie])
   <ul>
     {
       seriePosts.map((post) => {
-        const thumbnail = getPostThumbnail(post.slug, null)
-
         return (
           <li>
             <a href={`/posts/${post.slug}`}>{post.data.title}</a>
-            <Image src={thumbnail()} alt="A bird." />
           </li>
         )
       })
