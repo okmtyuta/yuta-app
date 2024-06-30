@@ -13,24 +13,12 @@ class PostsService {
   }
 
   getPosts() {
-    return this.posts
-  }
-
-  getGenres() {
-    const posts = this.posts
-    const genres = [
-      ...new Set(
-        posts
-          .map((post) => {
-            return post.data.genre
-          })
-          .filter((genre) => {
-            return genre != null
-          })
+    return this.posts.sort((p, q) => {
+      return (
+        new Date(q.data.postedAt).getTime() -
+        new Date(p.data.postedAt).getTime()
       )
-    ]
-
-    return genres
+    })
   }
 
   getSeries() {
@@ -50,18 +38,39 @@ class PostsService {
     return series
   }
 
-  findByGenres(genres: (string | undefined | null)[]) {
-    const exactGenres = genres.filter((genre) => genre != null)
-    if (exactGenres.length === 0) {
-      return []
-    }
-
+  listTags() {
     const posts = this.posts
-    return posts.filter((post) => {
-      return exactGenres.every((genre) => {
-        return post.data.genre && post.data.genre === genre
-      })
-    })
+    const tags = [
+      ...new Set(
+        posts
+          .map((post) => {
+            return post.data.tags
+          })
+          .filter((tag) => {
+            return tag != null
+          })
+          .flat()
+      )
+    ]
+
+    return tags
+  }
+
+  listSeries() {
+    const posts = this.posts
+    const series = [
+      ...new Set(
+        posts
+          .filter((post) => {
+            return post.data.serie
+          })
+          .map((post) => {
+            return post.data.serie
+          })
+      )
+    ]
+
+    return series
   }
 
   findBySeries(series: (string | undefined | null)[]) {
@@ -78,19 +87,18 @@ class PostsService {
     })
   }
 
-  // findByTags(tags: (string | undefined | null)[]) {
-  //   const exactTags = tags.filter((tag) => tag != null)
-  //   if (exactTags.length === 0) {
-  //     return []
-  //   }
+  findByTags(tags: string[]) {
+    if (tags.length === 0) {
+      return []
+    }
 
-  //   const posts = this.posts
-  //   return posts.filter((post) => {
-  //     return exactTags.every((tag) => {
-  //       return post.data.tags && post.data.tags.includes(tag)
-  //     })
-  //   })
-  // }
+    const posts = this.posts
+    return posts.filter((post) => {
+      return tags.every((tag) => {
+        return post.data.tags && post.data.tags.includes(tag)
+      })
+    })
+  }
 }
 
 export { PostsService }

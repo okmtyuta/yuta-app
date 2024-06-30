@@ -1,20 +1,28 @@
 import { defineConfig, passthroughImageService } from 'astro/config'
 import remarkMath from 'remark-math'
-import remarkDirective from 'remark-directive'
 import rehypeKatex from 'rehype-katex'
+import remarkDirective from 'remark-directive'
 import remarkLinkCard from 'remark-link-card'
-import { amsthm } from './src/markdown/amsthm'
+import { directivePlugin } from './src/markdown/directive-plugin'
 
 const katexOption = {
+  trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
   macros: {
-    '\\kakko': '\\left(#1\\right)'
+    '\\eqref': '\\href{###1}{(\\text{#1})}',
+    '\\ref': '\\href{###1}{\\text{#1}}',
+    '\\label': '\\htmlId{#1}{}'
   }
 }
 
 // https://astro.build/config
 export default defineConfig({
   markdown: {
-    remarkPlugins: [remarkMath, remarkDirective, remarkLinkCard, amsthm],
+    remarkPlugins: [
+      remarkMath,
+      remarkDirective,
+      remarkLinkCard,
+      directivePlugin
+    ],
     rehypePlugins: [[rehypeKatex, katexOption]]
   },
 

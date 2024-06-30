@@ -24,10 +24,9 @@ type Props = {
   post: CollectionEntry<'posts'>
   seriePosts: CollectionEntry<'posts'>[]
 }
-// const { post, seriePosts } = Astro.props
 const { post } = Astro.props
 
-const thumbnail = getPostThumbnail(post.slug, post.data.genre, null)
+const thumbnail = getPostThumbnail(post.slug, null)
 
 const thumbnail_src = (await thumbnail()).default.src
 
@@ -41,7 +40,7 @@ const { Content } = await post.render()
     image: `https://note.yuta.app/${thumbnail_src}`
   }}
 >
-  <h1>{post.data.title}</h1>
+  <h1 id="title">{post.data.title}</h1>
   <h6>{post.data.postedAt.toISOString().slice(0, 10)}</h6>
 
   {
@@ -56,39 +55,26 @@ const { Content } = await post.render()
   }
 
   {
-    post.data.genre && (
-      <div class="genre">
-        <span>Genre</span>
-        <span>
-          <a href={`/posts/genres/${post.data.genre}`}>{post.data.genre}</a>
-        </span>
+    post.data.tags.length > 0 && (
+      <div class="tags">
+        <span>Tags</span>
+        {post.data.tags.map((tag) => {
+          return (
+            <span>
+              <a href={`/posts/tags/${tag}`}>{tag}</a>
+            </span>
+          )
+        })}
       </div>
     )
   }
 
   <Content />
-
-  <!-- {
-    seriePosts.length > 0 && (
-      <>
-        <h6>Series</h6>
-        <ul>
-          {seriePosts.map((post) => {
-            return (
-              <li>
-                <a href={`/posts/${post.slug}`}>{post.data.title}</a>
-              </li>
-            )
-          })}
-        </ul>
-      </>
-    )
-  } -->
 </Layout>
 
 <style>
   .series,
-  .genre {
+  .tags {
     display: flex;
     gap: 10px;
   }

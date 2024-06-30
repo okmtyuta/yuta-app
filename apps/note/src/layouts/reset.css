@@ -37,6 +37,7 @@ table {
 }
 input,
 textarea {
+  user-select: auto;
   -webkit-user-select: auto;
 }
 textarea {
@@ -63,6 +64,8 @@ meter {
   -moz-user-modify: read-write;
   -webkit-user-modify: read-write;
   overflow-wrap: break-word;
+  line-break: after-white-space;
+  user-select: auto;
   -webkit-line-break: after-white-space;
   -webkit-user-select: auto;
 }
@@ -160,7 +163,9 @@ h6 {
   }
   font-weight: 700;
 }
-
+html {
+  scroll-padding-top: 98px;
+}
 body {
   color: #3c3c3c;
 }
@@ -241,23 +246,6 @@ ol > li:before {
   margin-right: 4px;
 }
 
-.amsthm {
-  margin: 10px 0;
-}
-.amsthm.important {
-  background-color: #fef4f4;
-  padding: 12px;
-  border-radius: 4px;
-}
-.amsthm-label {
-  font-weight: bold;
-  margin-right: 8px;
-}
-.amsthm-proof {
-  font-style: italic;
-  margin-right: 8px;
-}
-
 .rlc-favicon {
   display: none;
 }
@@ -266,4 +254,13 @@ ol > li:before {
 }
 .rlc-image {
   margin: 12px 0;
+}
+
+.theorem {
+  font-weight: bold;
+  margin-right: 12px;
+}
+.proof {
+  font-style: italic;
+  margin-right: 12px;
 }

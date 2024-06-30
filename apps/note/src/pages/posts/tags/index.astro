@@ -3,17 +3,17 @@ import Layout from '../../../layouts/Layout.astro'
 import { PostsService } from '../../../services/posts/posts.service'
 
 const service = await PostsService.init()
-const series = service.listSeries()
+const tags = service.listTags()
 ---
 
 <Layout>
-  <h1>Series</h1>
+  <h1>Tags</h1>
   <ul>
     {
-      series.map((serie) => {
+      tags.map((tag) => {
         return (
           <li>
-            <a href={`/posts/series/${serie}`}>{serie}</a>
+            <a href={`/posts/tags/${tag}`}>{tag}</a>
           </li>
         )
       })
