@@ -1,7 +1,5 @@
 packages:
   - 'apps/me/about'
   - 'apps/note'
-  # - "apps/me/blog/*"
-  # - "apps/accountant/*"
   - "packages/components/*"
   # - "packages/db/prisma"

@@ -2,7 +2,6 @@ import { defineConfig, passthroughImageService } from 'astro/config'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import remarkDirective from 'remark-directive'
-import remarkLinkCard from 'remark-link-card'
 import { directivePlugin } from './src/markdown/directive-plugin'
 
 const katexOption = {
@@ -20,7 +19,6 @@ export default defineConfig({
     remarkPlugins: [
       remarkMath,
       remarkDirective,
-      remarkLinkCard,
       directivePlugin
     ],
     rehypePlugins: [[rehypeKatex, katexOption]]

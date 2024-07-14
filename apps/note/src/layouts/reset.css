@@ -215,6 +215,14 @@ blockquote {
   color: #3c3c3c;
 }
 
+code.inline-code {
+  background-color: #9e3d3f1f;
+  color: #9e3d3f;
+  padding: 4px;
+  border-radius: 4px;
+}
+/* ------ */
+
 .katex {
   font-size: 1rem;
 }
@@ -256,21 +264,66 @@ ol > li:before {
   margin-right: 4px;
 }
 
-.rlc-favicon {
-  display: none;
-}
-.rlc-info {
-  display: none;
-}
-.rlc-image {
-  margin: 12px 0;
+body {
+  counter-reset: section 0;
 }
 
-.theorem {
+.theorem .label {
+  margin-left: 4px;
+  margin-right: 8px;
+}
+.theorem .label::before {
+  content: '(';
+}
+.theorem .label::after {
+  content: ')';
+}
+
+.theorem > :first-child:before {
   font-weight: bold;
-  margin-right: 12px;
+  counter-increment: theorem 1;
+}
+.theorem:not(:has(.label)) > :first-child:before {
+  margin-right: 8px;
+}
+
+.dfn > :first-child:before {
+  content: 'Def. ' counter(section) '.' counter(theorem);
+}
+.prop > :first-child:before {
+  content: 'Prop. ' counter(section) '.' counter(theorem) ' (';
+}
+.thm > :first-child:before {
+  content: 'Thm. ' counter(section) '.' counter(theorem) ' (';
+}
+.lem > :first-child:before {
+  content: 'Lem. ' counter(section) '.' counter(theorem) ' (';
+}
+.cor > :first-child:before {
+  content: 'Cor. ' counter(section) '.' counter(theorem) ' (';
+}
+.ex > :first-child:before {
+  content: 'Ex. ' counter(section) '.' counter(theorem) ' (';
+}
+.eg > :first-child:before {
+  content: 'e.g. ' counter(section) '.' counter(theorem) ' (';
+}
+
+.proof > :first-child::before {
+  font-style: italic;
+  padding-right: 8px;
+  content: 'proof';
 }
 .proof {
-  font-style: italic;
-  margin-right: 12px;
+  padding-left: 12px;
+  border-left: 3px #3c3c3c solid;
+}
+
+h3.section {
+  counter-reset: theorem 0;
+}
+h3.section::before {
+  counter-increment: section 1;
+  content: counter(section) '.';
+  padding-right: 8px;
 }
