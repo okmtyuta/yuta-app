@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:me:about:client": "pnpm --filter @okmtyuta/apps.me.about.client.yuta.app dev",
-    "dev:me:about": "pnpm dev:me:about:client",
-    "build:me:about:client": "pnpm --filter @okmtyuta/apps.me.about.client.yuta.app build",
-    "build:me:about": "pnpm --filter @okmtyuta/apps.me.about.client.yuta.app build",
-    "build:components:astro": "pnpm --filter @okmtyuta/packages.components.astro.yuta.app build"
+    "dev:about": "pnpm --filter @okmtyuta/apps.abouy.okmtyuta.phd dev",
+    "dev:note": "pnpm --filter @okmtyuta/study.okmtyuta.phd dev",
+    "build:about": "pnpm --filter @okmtyuta/apps.abouy.client.okmtyuta.phd build",
+    "build:note": "pnpm --filter @okmtyuta/study.okmtyuta.phd build",
+    "build:components:astro": "pnpm --filter @okmtyuta/packages.components.astro.okmtyuta.phd build"
   },
   "keywords": [],
   "author": "",

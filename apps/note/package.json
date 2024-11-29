@@ -1,5 +1,5 @@
 {
-  "name": "@okmtyuta/study.yuta.app",
+  "name": "@okmtyuta/study.okmtyuta.phd",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -22,7 +22,7 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@okmtyuta/packages.components.astro.yuta.app": "workspace:^",
+    "@okmtyuta/packages.components.astro.okmtyuta.phd": "workspace:^",
     "prettier": "^3.3.2",
     "prettier-plugin-astro": "^0.13.0"
   }

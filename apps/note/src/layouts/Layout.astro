@@ -3,7 +3,7 @@ import {
   Header,
   Footer,
   Frame
-} from '@okmtyuta/packages.components.astro.yuta.app'
+} from '@okmtyuta/packages.components.astro.okmtyuta.phd'
 import './reset.css'
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { title = 'Note', description = '', og = {} } = Astro.props
-const { image: ogimage = 'https://note.yuta.app/favicon.svg' } = og
+const { image: ogimage = 'https://note.okmtyuta.phd/favicon.svg' } = og
 ---
 
 <!doctype html>
@@ -37,14 +37,14 @@ const { image: ogimage = 'https://note.yuta.app/favicon.svg' } = og
     <meta property="og:type" content="website" />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogimage} />
-    <meta property="og:url" content="https://note.yuta.app" />
+    <meta property="og:url" content="https://note.okmtyuta.phd" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <title>{title} | yuta.app</title>
+    <title>{title} | okmtyuta.phd</title>
   </head>
   <body>
     <main>
-      <Header>note.yuta.app</Header>
+      <Header>note.okmtyuta.phd</Header>
 
       <Frame>
         <slot />

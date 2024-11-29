@@ -1,5 +1,5 @@
 packages:
-  - 'apps/me/about'
+  - 'apps/about'
   - 'apps/note'
   - "packages/components/*"
   # - "packages/db/prisma"
