@@ -207,7 +207,7 @@ blockquote {
 }
 
 .katex {
-  font-size: 1rem;
+  font: normal 1.05em KaTeX_Main, Times New Roman, serif;
 }
 .katex-display {
   overflow-x: scroll;

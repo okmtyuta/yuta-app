@@ -224,7 +224,7 @@ code.inline-code {
 /* ------ */
 
 .katex {
-  font-size: 1rem;
+  font: normal 1.05em KaTeX_Main, Times New Roman, serif;
 }
 .katex-display {
   overflow-x: scroll;
@@ -291,22 +291,22 @@ body {
   content: 'Def. ' counter(section) '.' counter(theorem);
 }
 .prop > :first-child:before {
-  content: 'Prop. ' counter(section) '.' counter(theorem) ' (';
+  content: 'Prop. ' counter(section) '.' counter(theorem);
 }
 .thm > :first-child:before {
-  content: 'Thm. ' counter(section) '.' counter(theorem) ' (';
+  content: 'Thm. ' counter(section) '.' counter(theorem);
 }
 .lem > :first-child:before {
-  content: 'Lem. ' counter(section) '.' counter(theorem) ' (';
+  content: 'Lem. ' counter(section) '.' counter(theorem);
 }
 .cor > :first-child:before {
-  content: 'Cor. ' counter(section) '.' counter(theorem) ' (';
+  content: 'Cor. ' counter(section) '.' counter(theorem);
 }
 .ex > :first-child:before {
-  content: 'Ex. ' counter(section) '.' counter(theorem) ' (';
+  content: 'Ex. ' counter(section) '.' counter(theorem);
 }
 .eg > :first-child:before {
-  content: 'e.g. ' counter(section) '.' counter(theorem) ' (';
+  content: 'e.g. ' counter(section) '.' counter(theorem);
 }
 
 .proof > :first-child::before {
